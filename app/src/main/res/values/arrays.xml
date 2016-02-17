@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="pref_sort_direction_label">
+        <item>@string/pref_label_highest_rated</item>
+        <item>@string/pref_label_most_popular</item>
+    </string-array>
+
+    <string-array name="pref_sort_direction_values">
+        <item>@string/pref_value_highest_rated</item>
+        <item>@string/pref_value_most_popular</item>
+    </string-array>
+
+
+
+</resources>

@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">PopularMovies</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="pref_sort_default">popularity.desc</string>
+    <string name="pref_sort_label">Sort By</string>
+    <string name="pref_direction_label">Direction</string>
+    <string name="pref_sort_key">sort</string>
+    <string name="pref_label_popularity">Popularity</string>
+    <string name="pref_label_average">Vote Average</string>
+    <string name="pref_label_release">Release Date</string>
+    <string name="pref_label_count">Vote Count</string>
+    <string name="pref_label_asc">Ascending</string>
+    <string name="pref_label_desc">Descending</string>
+    <string name="pref_value_asc">asc</string>
+    <string name="pref_value_desc">desc</string>
+    <string name="pref_value_popularity">popularity</string>
+    <string name="pref_value_release">release_date</string>
+    <string name="pref_value_average">vote_average</string>
+    <string name="pref_value_count">vote_count</string>
+    <string name="pref_direction_default">popularity.desc</string>
+    <string name="pref_direction_key">sort_by</string>
+    <string name="pref_value_highest_rated">vote_count.desc</string>
+    <string name="pref_value_most_popular">popularity.desc</string>
+    <string name="pref_label_highest_rated">Highest Rated</string>
+    <string name="pref_label_most_popular">Most Popular</string>
+    <string name="review_title">Reviews</string>
+    <string name="trailer_title">Trailer</string>
+    <string name="overview_title">Overview</string>
+</resources>
