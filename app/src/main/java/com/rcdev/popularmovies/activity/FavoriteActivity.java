@@ -24,7 +24,6 @@ import com.rcdev.popularmovies.data.MovieContract;
  */
 public class FavoriteActivity extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private Cursor mDetailCursor;
-    private ImageView poster;
     private ImageView backdrop;
     private TextView movie_title;
     private TextView movie_release;
@@ -55,8 +54,8 @@ public class FavoriteActivity extends Fragment implements LoaderManager.LoaderCa
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String selection = null;
-        String [] selectionArgs = null;
-        if (args != null){
+        String[] selectionArgs = null;
+        if (args != null) {
             selection = MovieContract.FavoriteEntry._ID;
             selectionArgs = new String[]{String.valueOf(mPosition)};
         }
@@ -73,13 +72,12 @@ public class FavoriteActivity extends Fragment implements LoaderManager.LoaderCa
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
-        poster = (ImageView) rootView.findViewById(R.id.ivPoster);
-        backdrop= (ImageView) rootView.findViewById(R.id.ivBackdrop);
-        movie_title = (TextView)rootView.findViewById(R.id.tvTitle);
+        backdrop = (ImageView) rootView.findViewById(R.id.ivBackdrop);
+        movie_title = (TextView) rootView.findViewById(R.id.tvTitle);
         movie_release = (TextView) rootView.findViewById(R.id.tvReleaseDate);
-        movie_rating = (TextView)rootView.findViewById(R.id.tvRating);
+        movie_rating = (TextView) rootView.findViewById(R.id.tvRating);
         movie_overview = (TextView) rootView.findViewById(R.id.tvOverview);
-        trailer = (ListView)rootView.findViewById(R.id.lvTrailer);
+        trailer = (ListView) rootView.findViewById(R.id.lvTrailers);
         review = (ListView) rootView.findViewById(R.id.lvReviews);
 
         Bundle args = this.getArguments();
@@ -96,7 +94,7 @@ public class FavoriteActivity extends Fragment implements LoaderManager.LoaderCa
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -106,7 +104,6 @@ public class FavoriteActivity extends Fragment implements LoaderManager.LoaderCa
         mCursor = data;
         mCursor.moveToFirst();
         DatabaseUtils.dumpCursor(data);
-        poster.setImageResource(mDetailCursor.getInt(5));
         backdrop.setImageResource(mDetailCursor.getInt(4));
         movie_title.setText(mDetailCursor.getString(2));
         movie_release.setText(mDetailCursor.getString(8));
@@ -117,7 +114,7 @@ public class FavoriteActivity extends Fragment implements LoaderManager.LoaderCa
 
     // reset CursorAdapter on Loader Reset
     @Override
-    public void onLoaderReset(Loader<Cursor> loader){
+    public void onLoaderReset(Loader<Cursor> loader) {
         mCursor = null;
     }
 }

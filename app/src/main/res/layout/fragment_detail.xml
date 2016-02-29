@@ -1,84 +1,92 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/ivPoster"
-        android:layout_marginTop="100dp"
-        android:layout_width="150dp"
-        android:layout_height="200dp" />
-
+    <!-- Backdrop -->
     <ImageView
         android:id="@+id/ivBackdrop"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp" />
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivBackdrop"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="16dp"
+        android:text="Title"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/abc_text_size_large_material" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/llDetails"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/ivBackdrop"
         android:orientation="vertical"
-        android:layout_below="@+id/ivPoster"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:id="@+id/tvOverview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Overview"
-            android:layout_gravity="right" />
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Title" />
-
+        android:padding="16dp">
+        <!-- Release Date -->
         <TextView
             android:id="@+id/tvReleaseDate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Release Date" />
 
+        <!-- Rating -->
         <TextView
             android:id="@+id/tvRating"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rating" />
+
+        <!-- Overview -->
+        <TextView
+            android:id="@+id/tvOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Overview" />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvReviews"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/linearLayout">
+        android:layout_below="@id/llDetails"
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
+        android:text="Reviews" />
 
-        <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/primary_dark" />
-
+    <!-- Reviews -->
     <ListView
         android:id="@+id/lvReviews"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp" />
-
-    <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/primary_dark" />
+        android:layout_height="150dp"
+        android:layout_below="@id/tvReviews" />
 
-    <ListView
-        android:id="@+id/lvTrailer"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"  />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btFavorite"
+    <TextView
+        android:id="@+id/tvTrailers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout" />
+        android:layout_below="@id/lvReviews"
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
+        android:text="Trailers" />
+
+    <!-- Trailers -->
+    <ListView
+        android:id="@+id/lvTrailers"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/tvTrailers" />
+
+    <Button
+        android:id="@+id/btFabFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
+

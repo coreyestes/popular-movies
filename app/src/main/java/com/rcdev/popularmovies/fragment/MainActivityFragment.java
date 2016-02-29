@@ -49,7 +49,8 @@ public class MainActivityFragment extends Fragment {
 
     private MoviePosterAdapter mMovieAdapter;
     private ArrayList<MovieItem> mMovieData;
-    @Bind(R.id.gridView) GridView gridView;
+    @Bind(R.id.gridView)
+    GridView gridView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

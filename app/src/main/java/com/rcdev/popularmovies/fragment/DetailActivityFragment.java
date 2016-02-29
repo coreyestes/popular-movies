@@ -49,7 +49,6 @@ public class DetailActivityFragment extends Fragment implements View.OnClickList
     protected String id;
     protected String title;
     protected String thumb;
-    protected String mPoster;
     protected String backdrop;
     protected String release;
     protected String rating;
@@ -91,7 +90,7 @@ public class DetailActivityFragment extends Fragment implements View.OnClickList
         View detailView = inflater.inflate(R.layout.fragment_detail, container, false);
         Intent intent = getActivity().getIntent();
 
-        detailView.findViewById(R.id.btFavorite).setOnClickListener(this);
+        detailView.findViewById(R.id.btFabFavorite).setOnClickListener(this);
 
         if (intent != null && intent.hasExtra(Constants.ID)) {
             id = intent.getStringExtra(Constants.ID);
@@ -102,14 +101,6 @@ public class DetailActivityFragment extends Fragment implements View.OnClickList
             title = intent.getStringExtra(Constants.TITLE);
             ((TextView) detailView.findViewById(R.id.tvTitle))
                     .setText(title);
-
-            mPoster = intent.getStringExtra("path");
-            Log.i(LOG_TAG, "poster URL: " + mPoster);
-            ImageView poster = (ImageView) detailView.findViewById(R.id.ivPoster);
-            Picasso.with(getActivity())
-                    .load(mPoster)
-                    .fit()
-                    .into(poster);
 
             getActivity().setTitle(title);
 
@@ -137,7 +128,7 @@ public class DetailActivityFragment extends Fragment implements View.OnClickList
             mReviewAdapter = new ReviewAdapter(getContext(), R.layout.review_item, mReviewData);
             reviewListView.setAdapter(mReviewAdapter);
 
-            ListView trailerListView = (ListView) detailView.findViewById(R.id.lvTrailer);
+            ListView trailerListView = (ListView) detailView.findViewById(R.id.lvTrailers);
             mTrailerAdapter = new TrailerAdapter(getContext(), R.layout.trailer_item, mTrailerData);
             trailerListView.setAdapter(mTrailerAdapter);
 
@@ -173,7 +164,7 @@ public class DetailActivityFragment extends Fragment implements View.OnClickList
         Log.i(LOG_TAG, "Button clicked+");
 
         final int resId = v.getId();
-        if (resId == R.id.btFavorite) {
+        if (resId == R.id.btFabFavorite) {
             Uri uri = MovieContract.FavoriteEntry.CONTENT_URI.buildUpon().appendPath(id).build();
             Log.i(LOG_TAG, "uri is: " + uri);
             try {
@@ -207,7 +198,6 @@ public class DetailActivityFragment extends Fragment implements View.OnClickList
         favoriteMovieValues.put(MovieContract.FavoriteEntry.COLUMN_TITLE, title);
         favoriteMovieValues.put(MovieContract.FavoriteEntry.COLUMN_THUMB, thumb);
         favoriteMovieValues.put(MovieContract.FavoriteEntry.COLUMN_BACK_DROP, backdrop);
-        favoriteMovieValues.put(MovieContract.FavoriteEntry.COLUMN_POSTER, mPoster);
         favoriteMovieValues.put(MovieContract.FavoriteEntry.COLUMN_OVERVIEW, overview);
         favoriteMovieValues.put(MovieContract.FavoriteEntry.COLUMN_RATING, rating);
         favoriteMovieValues.put(MovieContract.FavoriteEntry.COLUMN_RELEASE_DATE, release);
@@ -217,63 +207,6 @@ public class DetailActivityFragment extends Fragment implements View.OnClickList
     public void deleteFavorite() {
         getActivity().getContentResolver().delete(MovieContract.FavoriteEntry.CONTENT_URI, id, null);
     }
-
-    /*
-    // handle favourite button on click
-    @Override
-    public void onClick(View v) {
-        Log.i(LOG_TAG, "Button clicked-");
-        if(v == null) return;
-        Log.i(LOG_TAG, "Button clicked+");
-
-        final int resId = v.getId();
-        if (resId == R.id.favorite_button) {
-            Uri uri = MovieContract.FavouriteEntry.CONTENT_URI.buildUpon().appendPath(movie_id).build();
-            Log.i(LOG_TAG, "uri is: "+ uri);
-            try {
-            final Cursor favoriteCursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-            Log.i(LOG_TAG, "cursor: "+ favoriteCursor);
-            if ((favoriteCursor != null) && (!(favoriteCursor.moveToNext()))) {
-                ContentValues contentValues = generateContentValues();
-                Uri insertedUri = getActivity().getContentResolver().insert(MovieContract.FavouriteEntry.CONTENT_URI, contentValues);
-                long id = ContentUris.parseId(insertedUri);
-                Log.i(LOG_TAG,"id is :"+id);
-                if (id != -1) {
-                    Toast.makeText(getActivity(), "Added to Favorites", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                deleteFavourite();
-                Toast.makeText(getActivity(), "Delete from favorites", Toast.LENGTH_SHORT).show();
-            }
-                if(favoriteCursor != null) {
-                    favoriteCursor.close();
-                }
-            } catch (Exception e) {
-
-            }
-        }
-    }
-    //insert movie to FavouriteEntry table
-    private ContentValues generateContentValues() {
-        ContentValues favouriteMovieValues = new ContentValues();
-        favouriteMovieValues.put(MovieContract.FavouriteEntry.COLUMN_MOVIE_ID, movie_id);
-        favouriteMovieValues.put(MovieContract.FavouriteEntry.COLUMN_TITLE, movie_title);
-        favouriteMovieValues.put(MovieContract.FavouriteEntry.COLUMN_THUMB, movie_thumb);
-        favouriteMovieValues.put(MovieContract.FavouriteEntry.COLUMN_BACK_DROP, movie_backdrop);
-        favouriteMovieValues.put(MovieContract.FavouriteEntry.COLUMN_POSTER, movie_poster);
-        favouriteMovieValues.put(MovieContract.FavouriteEntry.COLUMN_OVERVIEW, movie_overview);
-        favouriteMovieValues.put(MovieContract.FavouriteEntry.COLUMN_RATING, movie_rating);
-        favouriteMovieValues.put(MovieContract.FavouriteEntry.COLUMN_RELEASE_DATE, movie_release);
-
-
-        return favouriteMovieValues;
-    }
-
-    public void deleteFavourite() {
-        getActivity().getContentResolver().delete(MovieContract.FavouriteEntry.CONTENT_URI, movie_id, null);
-    }
-     */
-
 
 
     public class FetchReviewTask extends AsyncTask<String, Void, ArrayList<ReviewItem>> {
